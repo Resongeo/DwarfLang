@@ -6,12 +6,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\ASDAS\ASD.h">
-      <Filter>ASDAS</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\test.h" />
+    <ClInclude Include="Source\Haste.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Haste.cpp" />
   </ItemGroup>
 </Project>

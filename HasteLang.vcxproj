@@ -95,10 +95,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\ASDAS\ASD.h" />
-    <ClInclude Include="Source\test.h" />
+    <ClInclude Include="Source\Haste.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Haste.cpp" />
     <ClCompile Include="Source\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
