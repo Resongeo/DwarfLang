@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ASDAS">
+      <UniqueIdentifier>{51E6C50C-BDFA-EDBD-867C-911DF24FEAEE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\ASDAS\ASD.h">
+      <Filter>ASDAS</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\test.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\main.cpp" />
+  </ItemGroup>
+</Project>
