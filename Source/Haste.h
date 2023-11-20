@@ -1,26 +1,25 @@
 #pragma once
 
-#include <string>
+#include "Types.h"
+#include "Lexer.h"
 
 namespace HasteLang
 {
-	enum class SourceType
-	{
-		String, Filepath
-	};
-
 	class Haste
 	{
 	public:
-		Haste(const std::string& source, SourceType sourceType);
+		Haste(const String& filepath);
 
 		void Run();
 		static void PrintInfo();
+		static void Error(const String& message, int line);
 
 	private:
-		std::string ReadFile(const std::string& filepath);
+		String ReadFile(const String& filepath);
 
 	private:
-		std::string m_Source;
+		static Haste* s_Instance;
+		String m_Source;
+		bool m_Error = false;
 	};
 }

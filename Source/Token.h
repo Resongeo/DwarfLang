@@ -1,19 +1,18 @@
 #pragma once
 
 #include "TokenType.h"
-#include <string>
+#include "Types.h"
 
 namespace HasteLang
 {
 	class Token
 	{
 	public:
-		Token(TokenType type, const std::string& lexeme, const std::string& value, int line)
-			: Type(type), Lexeme(lexeme), Value(value), Line(line) { }
+		Token(TokenType type, const String& value, int line)
+			: Type(type), Value(value), Line(line) { }
 
 		TokenType Type;
-		std::string Lexeme;
-		std::string Value;
+		String Value;
 		int Line;
 	};
 }

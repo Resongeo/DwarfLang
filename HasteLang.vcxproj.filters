@@ -7,9 +7,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Haste.h" />
+    <ClInclude Include="Source\Token.h" />
+    <ClInclude Include="Source\TokenType.h" />
+    <ClInclude Include="Source\Lexer.h" />
+    <ClInclude Include="Source\Types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Haste.cpp" />
+    <ClCompile Include="Source\Lexer.cpp" />
   </ItemGroup>
 </Project>

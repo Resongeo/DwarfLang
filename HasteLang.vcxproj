@@ -96,9 +96,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\Haste.h" />
+    <ClInclude Include="Source\Lexer.h" />
+    <ClInclude Include="Source\Token.h" />
+    <ClInclude Include="Source\TokenType.h" />
+    <ClInclude Include="Source\Types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Haste.cpp" />
+    <ClCompile Include="Source\Lexer.cpp" />
     <ClCompile Include="Source\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

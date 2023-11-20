@@ -13,7 +13,7 @@ namespace HasteLang
 		RIGHT_SQUARE_BRACE,	// ]
 		COMMA,				// ,
 		DOT,				// .
-		SEMICOLO,			// ;
+		SEMICOLON,			// ;
 		PLUS,				// +
 		MINUS,				// -
 		STAR,				// *
@@ -51,6 +51,6 @@ namespace HasteLang
 		PRINT,
 		VAR,
 
-		EOF,
+		FILE_END
 	};
 }

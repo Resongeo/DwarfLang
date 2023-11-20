@@ -9,7 +9,8 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		Haste haste(std::string(argv[1]), SourceType::String);
+		auto filepath = String(argv[1]);
+		Haste haste(filepath);
 		haste.Run();
 	}
 
