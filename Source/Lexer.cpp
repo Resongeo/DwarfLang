@@ -6,7 +6,7 @@ namespace HasteLang
 {
 	Vector<Token> HasteLang::Lexer::GetTokens()
 	{
-		while (!IsEndOfSource())
+		while (!EndOfSource())
 		{
 			m_Start = m_Current;
 			GetNextToken();
@@ -39,6 +39,9 @@ namespace HasteLang
 			case '>': AddToken(MatchNext('=') ? TokenType::GREATER_EQUAL : TokenType::GREATER); break;
 			case '<': AddToken(MatchNext('=') ? TokenType::LESS_EQUAL : TokenType::LESS); break;
 
+			/* String literals */
+			case '"': GetString(); break;
+
 			/* Whitespaces */
 			case ' ': break;
 			case '\r': break;
@@ -47,8 +50,68 @@ namespace HasteLang
 			/* New line */
 			case '\n': m_Line++; break;
 
-			default: Haste::Error(String("Unexpected character: ") + ch, m_Line); break;
+			/* Comments */
+			case '#':
+			{
+				while (Peek() != '\n' && !EndOfSource())
+				{
+					Advance();
+				}
+				break;
+			}
+
+			/* Numbers or unexpected characters */
+			default:
+			{
+				if (IsDigit(ch))
+				{
+					GetNumber();
+				}
+				else
+				{
+					Haste::Error(String("Unexpected character: ") + ch, m_Line);
+				}
+
+				break;
+			}
 		}
+	}
+
+	void Lexer::GetString()
+	{
+		while (Peek() != '"' && !EndOfSource())
+		{
+			if (Peek() == '\n')
+			{
+				m_Line++;
+			}
+			Advance();
+		}
+
+		if (EndOfSource())
+		{
+			Haste::Error("Unterminated string", m_Line);
+			return;
+		}
+
+		Advance();
+
+		String value = m_Source.substr(m_Start + 1, (m_Current - m_Start) - 2);
+		AddToken(TokenType::STRING, value);
+	}
+
+	void Lexer::GetNumber()
+	{
+		while (IsDigit(Peek())) Advance();
+
+		if (Peek() == '.' && IsDigit(PeekNext()))
+		{
+			Advance();
+
+			while (IsDigit(Peek())) Advance();
+		}
+
+		AddToken(TokenType::NUMBER);
 	}
 
 	void Lexer::AddToken(TokenType type)
@@ -68,16 +131,33 @@ namespace HasteLang
 		return m_Source[m_Current - 1];
 	}
 
+	char Lexer::Peek()
+	{
+		if (EndOfSource()) return '\0';
+		return m_Source[m_Current];
+	}
+
+	char Lexer::PeekNext()
+	{
+		if (m_Current + 1 >= m_Source.size()) return '\0';
+		return m_Source[m_Current + 1];
+	}
+
 	bool Lexer::MatchNext(char expected)
 	{
-		if (IsEndOfSource()) return false;
+		if (EndOfSource()) return false;
 		if (m_Source[m_Current] != expected) return false;
 
 		m_Current++;
 		return true;
 	}
 
-	bool Lexer::IsEndOfSource()
+	bool Lexer::IsDigit(char character)
+	{
+		return character >= '0' && character <= '9';
+	}
+
+	bool Lexer::EndOfSource()
 	{
 		return m_Current >= m_Source.size();
 	}

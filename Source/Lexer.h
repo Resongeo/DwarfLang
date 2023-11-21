@@ -13,19 +13,24 @@ namespace HasteLang
 
 	private:
 		void GetNextToken();
+		void GetString();
+		void GetNumber();
 		void AddToken(TokenType type);
 		void AddToken(TokenType type, const String& value);
 
 		char Advance();
+		char Peek();
+		char PeekNext();
 		bool MatchNext(char expected);
-		bool IsEndOfSource();
+		bool IsDigit(char character);
+		bool EndOfSource();
 
 	private:
 		String m_Source;
 		Vector<Token> m_Tokens;
 
-		int m_Start = 0;
-		int m_Current = 0;
-		int m_Line = 1;
+		size_t m_Start = 0;
+		size_t m_Current = 0;
+		size_t m_Line = 1;
 	};
 }
