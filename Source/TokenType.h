@@ -47,7 +47,7 @@ namespace HasteLang
 		THIS,
 		BASE,
 		RETURN,
-		FUN,
+		FUNC,
 		PRINT,
 		VAR,
 

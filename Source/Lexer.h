@@ -7,7 +7,7 @@ namespace HasteLang
 	class Lexer
 	{
 	public:
-		Lexer(const String& source) : m_Source(source) { }
+		Lexer(const String& source);
 
 		Vector<Token> GetTokens();
 
@@ -15,6 +15,7 @@ namespace HasteLang
 		void GetNextToken();
 		void GetString();
 		void GetNumber();
+		void GetIdentifier();
 		void AddToken(TokenType type);
 		void AddToken(TokenType type, const String& value);
 
@@ -23,11 +24,14 @@ namespace HasteLang
 		char PeekNext();
 		bool MatchNext(char expected);
 		bool IsDigit(char character);
+		bool IsAlpha(char character);
+		bool IsAlphaNumeric(char character);
 		bool EndOfSource();
 
 	private:
 		String m_Source;
 		Vector<Token> m_Tokens;
+		HashMap<String, TokenType> m_Keywords;
 
 		size_t m_Start = 0;
 		size_t m_Current = 0;
