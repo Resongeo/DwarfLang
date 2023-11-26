@@ -31,6 +31,8 @@ namespace HasteLang
 			GetNextToken();
 		}
 
+		AddToken(TokenType::FILE_END);
+
 		return m_Tokens;
 	}
 

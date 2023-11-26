@@ -1,0 +1,56 @@
+#pragma once
+
+#include "Types.h"
+#include "Token.h"
+#include "ExprVisitor.h"
+
+namespace HasteLang
+{
+	class Expr
+	{
+	public:
+		Expr() = default;
+		virtual String Accept(ExprVisitor& visitor) = 0;
+	};
+
+	using ExprRef = Ref<Expr>;
+
+	class BinaryExpr : public Expr
+	{
+	public:
+		BinaryExpr(ExprRef left, Token op, ExprRef right);
+		String Accept(ExprVisitor& visitor) override;
+
+		ExprRef Left;
+		Token Operator;
+		ExprRef Right;
+	};
+
+	class GroupExpr : public Expr
+	{
+	public:
+		GroupExpr(ExprRef expression);
+		String Accept(ExprVisitor& visitor) override;
+
+		ExprRef Expression;
+	};
+
+	class LiteralExpr : public Expr
+	{
+	public:
+		LiteralExpr(String value);
+		String Accept(ExprVisitor& visitor) override;
+
+		String Value;
+	};
+
+	class UnaryExpr : public Expr
+	{
+	public:
+		UnaryExpr(ExprRef right, Token op);
+		String Accept(ExprVisitor& visitor) override;
+
+		ExprRef Right;
+		Token Operator;
+	};
+}

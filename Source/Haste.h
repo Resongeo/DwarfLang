@@ -12,7 +12,7 @@ namespace HasteLang
 
 		void Run();
 		static void PrintInfo();
-		static void Error(const String& message, int line);
+		static void Error(const String& message, size_t line);
 
 	private:
 		String ReadFile(const String& filepath);

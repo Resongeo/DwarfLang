@@ -95,6 +95,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ASTPrinter.h" />
+    <ClInclude Include="Source\Expr.h" />
+    <ClInclude Include="Source\ExprFwd.h" />
+    <ClInclude Include="Source\ExprVisitor.h" />
     <ClInclude Include="Source\Haste.h" />
     <ClInclude Include="Source\Lexer.h" />
     <ClInclude Include="Source\Token.h" />
@@ -102,6 +106,8 @@
     <ClInclude Include="Source\Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\ASTPrinter.cpp" />
+    <ClCompile Include="Source\Expr.cpp" />
     <ClCompile Include="Source\Haste.cpp" />
     <ClCompile Include="Source\Lexer.cpp" />
     <ClCompile Include="Source\main.cpp" />
