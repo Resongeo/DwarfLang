@@ -15,6 +15,7 @@
     <ClInclude Include="Source\ExprVisitor.h" />
     <ClInclude Include="Source\ExprFwd.h" />
     <ClInclude Include="Source\ASTPrinter.h" />
+    <ClInclude Include="Source\Parser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp" />
@@ -22,5 +23,6 @@
     <ClCompile Include="Source\Lexer.cpp" />
     <ClCompile Include="Source\Expr.cpp" />
     <ClCompile Include="Source\ASTPrinter.cpp" />
+    <ClCompile Include="Source\Parser.cpp" />
   </ItemGroup>
 </Project>

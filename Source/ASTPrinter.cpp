@@ -9,7 +9,7 @@ namespace HasteLang
 
 	String ASTPrinter::VisitBinaryExpr(BinaryExpr* binaryExpr)
 	{
-		return Parenthesize(binaryExpr->Operator.Value, { binaryExpr->Left, binaryExpr->Right });
+		return Parenthesize(binaryExpr->Operand.Value, { binaryExpr->Left, binaryExpr->Right });
 	}
 
 	String ASTPrinter::VisitGroupExpr(GroupExpr* groupExpr)
@@ -24,7 +24,7 @@ namespace HasteLang
 
 	String ASTPrinter::VisitUnaryExpr(UnaryExpr* unaryExpr)
 	{
-		return Parenthesize(unaryExpr->Operator.Value, { unaryExpr->Right });
+		return Parenthesize(unaryExpr->Operand.Value, { unaryExpr->Right });
 	}
 
 	String ASTPrinter::Parenthesize(const String& name, const Vector<ExprRef>& exprs)

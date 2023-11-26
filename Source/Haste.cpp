@@ -1,11 +1,13 @@
 #include "Haste.h"
 
 #include "Lexer.h"
+#include "Parser.h"
 #include "ASTPrinter.h"
 
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <exception>
 
 namespace HasteLang
 {
@@ -21,19 +23,9 @@ namespace HasteLang
 	{
 		auto lexer = Lexer(m_Source);
 		auto tokens = lexer.GetTokens();
+		auto parser = Parser(tokens);
 
-		ExprRef left = CreateRef<UnaryExpr>(
-			CreateRef<LiteralExpr>("123"),
-			Token(TokenType::MINUS, "-", 1)
-		);
-		Token op(TokenType::STAR, "*", 1);
-		ExprRef right = CreateRef<GroupExpr>(
-			CreateRef<LiteralExpr>("3.14")
-		);
-
-		ExprRef expression = CreateRef<BinaryExpr>(left, op, right);
-
-		std::cout << ASTPrinter().Print(expression) << std::endl;
+		std::cout << ASTPrinter().Print(parser.Parse()) << std::endl;
 	}
 
 	void Haste::PrintInfo()
@@ -45,6 +37,20 @@ namespace HasteLang
 	{
 		std::cout << "[ERROR] Line: " << line << " " << message << std::endl;
 		s_Instance->m_Error = true;
+	}
+
+	void Haste::Error(const Token& token, const String& message)
+	{
+		if (token.Type == TokenType::FILE_END)
+		{
+			std::cout << "[ERROR] Line: " << token.Line << " at end: " << message << std::endl;
+		}
+		else
+		{
+			std::cout << "[ERROR] Line: " << token.Line << " at " << token.Value << ": " << message << std::endl;
+		}
+
+		throw std::exception();
 	}
 
 	String Haste::ReadFile(const String& filepath)

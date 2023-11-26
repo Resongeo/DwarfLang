@@ -3,7 +3,7 @@
 namespace HasteLang
 {
 	BinaryExpr::BinaryExpr(ExprRef left, Token op, ExprRef right)
-		: Left(std::move(left)), Operator(std::move(op)), Right(std::move(right)) { }
+		: Left(std::move(left)), Operand(std::move(op)), Right(std::move(right)) { }
 	String BinaryExpr::Accept(ExprVisitor& visitor) { return visitor.VisitBinaryExpr(this); }
 
 	GroupExpr::GroupExpr(ExprRef expression)
@@ -14,7 +14,7 @@ namespace HasteLang
 		: Value(std::move(value)) { }
 	String LiteralExpr::Accept(ExprVisitor& visitor) { return visitor.VisitLiteralExpr(this); }
 
-	UnaryExpr::UnaryExpr(ExprRef right, Token op)
-		: Right(std::move(right)), Operator(std::move(op)) { }
+	UnaryExpr::UnaryExpr(Token op, ExprRef right)
+		: Operand(std::move(op)), Right(std::move(right)) { }
 	String UnaryExpr::Accept(ExprVisitor& visitor) { return visitor.VisitUnaryExpr(this); }
 }

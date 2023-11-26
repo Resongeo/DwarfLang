@@ -22,7 +22,7 @@ namespace HasteLang
 		String Accept(ExprVisitor& visitor) override;
 
 		ExprRef Left;
-		Token Operator;
+		Token Operand;
 		ExprRef Right;
 	};
 
@@ -47,10 +47,10 @@ namespace HasteLang
 	class UnaryExpr : public Expr
 	{
 	public:
-		UnaryExpr(ExprRef right, Token op);
+		UnaryExpr(Token op, ExprRef right);
 		String Accept(ExprVisitor& visitor) override;
 
+		Token Operand;
 		ExprRef Right;
-		Token Operator;
 	};
 }

@@ -26,7 +26,7 @@ namespace HasteLang
 		bool IsDigit(char character);
 		bool IsAlpha(char character);
 		bool IsAlphaNumeric(char character);
-		bool EndOfSource();
+		bool IsAtEnd();
 
 	private:
 		String m_Source;

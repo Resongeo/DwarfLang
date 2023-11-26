@@ -50,6 +50,7 @@ namespace HasteLang
 		FUNC,
 		PRINT,
 		VAR,
+		NIL,
 
 		FILE_END
 	};

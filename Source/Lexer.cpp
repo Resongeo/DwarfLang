@@ -21,11 +21,12 @@ namespace HasteLang
 		m_Keywords["func"] = TokenType::FUNC;
 		m_Keywords["print"] = TokenType::PRINT;
 		m_Keywords["var"] = TokenType::VAR;
+		m_Keywords["null"] = TokenType::NIL;
 	}
 
 	Vector<Token> HasteLang::Lexer::GetTokens()
 	{
-		while (!EndOfSource())
+		while (!IsAtEnd())
 		{
 			m_Start = m_Current;
 			GetNextToken();
@@ -74,7 +75,7 @@ namespace HasteLang
 			/* Comments */
 			case '#':
 			{
-				while (Peek() != '\n' && !EndOfSource())
+				while (Peek() != '\n' && !IsAtEnd())
 				{
 					Advance();
 				}
@@ -104,7 +105,7 @@ namespace HasteLang
 
 	void Lexer::GetString()
 	{
-		while (Peek() != '"' && !EndOfSource())
+		while (Peek() != '"' && !IsAtEnd())
 		{
 			if (Peek() == '\n')
 			{
@@ -113,7 +114,7 @@ namespace HasteLang
 			Advance();
 		}
 
-		if (EndOfSource())
+		if (IsAtEnd())
 		{
 			Haste::Error("Unterminated string", m_Line);
 			return;
@@ -165,6 +166,8 @@ namespace HasteLang
 		m_Tokens.push_back(Token(type, value, m_Line));
 	}
 
+
+
 	char Lexer::Advance()
 	{
 		m_Current++;
@@ -173,7 +176,7 @@ namespace HasteLang
 
 	char Lexer::Peek()
 	{
-		if (EndOfSource()) return '\0';
+		if (IsAtEnd()) return '\0';
 		return m_Source[m_Current];
 	}
 
@@ -185,7 +188,7 @@ namespace HasteLang
 
 	bool Lexer::MatchNext(char expected)
 	{
-		if (EndOfSource()) return false;
+		if (IsAtEnd()) return false;
 		if (m_Source[m_Current] != expected) return false;
 
 		m_Current++;
@@ -210,7 +213,7 @@ namespace HasteLang
 		return IsDigit(character) || IsAlpha(character);
 	}
 
-	bool Lexer::EndOfSource()
+	bool Lexer::IsAtEnd()
 	{
 		return m_Current >= m_Source.size();
 	}
