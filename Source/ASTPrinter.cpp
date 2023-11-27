@@ -2,32 +2,32 @@
 
 namespace HasteLang
 {
-	String ASTPrinter::Print(const ExprRef& expr)
+	Object ASTPrinter::Print(const ExprRef& expr)
 	{
 		return expr->Accept(*this);
 	}
 
-	String ASTPrinter::VisitBinaryExpr(BinaryExpr* binaryExpr)
+	Object ASTPrinter::VisitBinaryExpr(BinaryExpr* binaryExpr)
 	{
 		return Parenthesize(binaryExpr->Operand.Value, {binaryExpr->Left, binaryExpr->Right});
 	}
 
-	String ASTPrinter::VisitGroupExpr(GroupExpr* groupExpr)
+	Object ASTPrinter::VisitGroupExpr(GroupExpr* groupExpr)
 	{
 		return Parenthesize("group", { groupExpr->Expression });
 	}
 
-	String ASTPrinter::VisitLiteralExpr(LiteralExpr* literalExpr)
+	Object ASTPrinter::VisitLiteralExpr(LiteralExpr* literalExpr)
 	{
 		return literalExpr->Value.ToString();
 	}
 
-	String ASTPrinter::VisitUnaryExpr(UnaryExpr* unaryExpr)
+	Object ASTPrinter::VisitUnaryExpr(UnaryExpr* unaryExpr)
 	{
 		return Parenthesize(unaryExpr->Operand.Value, { unaryExpr->Right });
 	}
 
-	String ASTPrinter::Parenthesize(Object& object, const Vector<ExprRef>& exprs)
+	Object ASTPrinter::Parenthesize(Object& object, const Vector<ExprRef>& exprs)
 	{
 		String result;
 		result.append("(");
@@ -36,7 +36,7 @@ namespace HasteLang
 		for (auto& expr : exprs)
 		{
 			result.append(" ");
-			result.append(expr->Accept(*this));
+			result.append(expr->Accept(*this).Get<String>());
 		}
 
 		result.append(")");
@@ -44,7 +44,7 @@ namespace HasteLang
 		return result;
 	}
 
-	String ASTPrinter::Parenthesize(const String& name, const Vector<ExprRef>& exprs)
+	Object ASTPrinter::Parenthesize(const String& name, const Vector<ExprRef>& exprs)
 	{
 		String result;
 		result.append("(");
@@ -53,12 +53,12 @@ namespace HasteLang
 		for (auto& expr : exprs)
 		{
 			result.append(" ");
-			result.append(expr->Accept(*this));
+			result.append(expr->Accept(*this).Get<String>());
 		}
 
 		result.append(")");
 
-		return result;
+		return Object(result);
 	}
 }
 

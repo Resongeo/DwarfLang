@@ -10,15 +10,15 @@ namespace HasteLang
 	public:
 		ASTPrinter() = default;
 
-		String Print(const ExprRef& expr);
+		Object Print(const ExprRef& expr);
 
-		String VisitBinaryExpr(BinaryExpr* binaryExpr) override;
-		String VisitGroupExpr(GroupExpr* groupExpr) override;
-		String VisitLiteralExpr(LiteralExpr* literalExpr) override;
-		String VisitUnaryExpr(UnaryExpr* unaryExpr) override;
+		Object VisitBinaryExpr(BinaryExpr* binaryExpr) override;
+		Object VisitGroupExpr(GroupExpr* groupExpr) override;
+		Object VisitLiteralExpr(LiteralExpr* literalExpr) override;
+		Object VisitUnaryExpr(UnaryExpr* unaryExpr) override;
 
 	private:
-		String Parenthesize(Object& object, const Vector<ExprRef>& exprs);
-		String Parenthesize(const String& name, const Vector<ExprRef>& exprs);
+		Object Parenthesize(Object& object, const Vector<ExprRef>& exprs);
+		Object Parenthesize(const String& name, const Vector<ExprRef>& exprs);
 	};
 }

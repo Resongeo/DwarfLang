@@ -100,6 +100,7 @@
     <ClInclude Include="Source\ExprFwd.h" />
     <ClInclude Include="Source\ExprVisitor.h" />
     <ClInclude Include="Source\Haste.h" />
+    <ClInclude Include="Source\Interpreter.h" />
     <ClInclude Include="Source\Lexer.h" />
     <ClInclude Include="Source\Object.h" />
     <ClInclude Include="Source\Parser.h" />

@@ -8,9 +8,9 @@ namespace HasteLang
 	class ExprVisitor
 	{
 	public:
-		virtual String VisitBinaryExpr(BinaryExpr* binaryExpr) = 0;
-		virtual String VisitGroupExpr(GroupExpr* groupExpr) = 0;
-		virtual String VisitLiteralExpr(LiteralExpr* literalExpr) = 0;
-		virtual String VisitUnaryExpr(UnaryExpr* unaryExpr) = 0;
+		virtual Object VisitBinaryExpr(BinaryExpr* binaryExpr) = 0;
+		virtual Object VisitGroupExpr(GroupExpr* groupExpr) = 0;
+		virtual Object VisitLiteralExpr(LiteralExpr* literalExpr) = 0;
+		virtual Object VisitUnaryExpr(UnaryExpr* unaryExpr) = 0;
 	};
 }

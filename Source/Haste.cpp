@@ -25,7 +25,7 @@ namespace HasteLang
 		auto tokens = lexer.GetTokens();
 		auto parser = Parser(tokens);
 
-		std::cout << ASTPrinter().Print(parser.Parse()) << std::endl;
+		std::cout << ASTPrinter().Print(parser.Parse()).ToString() << std::endl;
 	}
 
 	void Haste::PrintInfo()

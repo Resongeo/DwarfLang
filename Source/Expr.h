@@ -10,7 +10,7 @@ namespace HasteLang
 	{
 	public:
 		Expr() = default;
-		virtual String Accept(ExprVisitor& visitor) = 0;
+		virtual Object Accept(ExprVisitor& visitor) = 0;
 	};
 
 	using ExprRef = Ref<Expr>;
@@ -19,7 +19,7 @@ namespace HasteLang
 	{
 	public:
 		BinaryExpr(ExprRef left, Token op, ExprRef right);
-		String Accept(ExprVisitor& visitor) override;
+		Object Accept(ExprVisitor& visitor) override;
 
 		ExprRef Left;
 		Token Operand;
@@ -30,7 +30,7 @@ namespace HasteLang
 	{
 	public:
 		GroupExpr(ExprRef expression);
-		String Accept(ExprVisitor& visitor) override;
+		Object Accept(ExprVisitor& visitor) override;
 
 		ExprRef Expression;
 	};
@@ -39,7 +39,7 @@ namespace HasteLang
 	{
 	public:
 		LiteralExpr(Object value);
-		String Accept(ExprVisitor& visitor) override;
+		Object Accept(ExprVisitor& visitor) override;
 
 		Object Value;
 	};
@@ -48,7 +48,7 @@ namespace HasteLang
 	{
 	public:
 		UnaryExpr(Token op, ExprRef right);
-		String Accept(ExprVisitor& visitor) override;
+		Object Accept(ExprVisitor& visitor) override;
 
 		Token Operand;
 		ExprRef Right;
