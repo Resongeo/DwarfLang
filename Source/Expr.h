@@ -38,10 +38,10 @@ namespace HasteLang
 	class LiteralExpr : public Expr
 	{
 	public:
-		LiteralExpr(String value);
+		LiteralExpr(Object value);
 		String Accept(ExprVisitor& visitor) override;
 
-		String Value;
+		Object Value;
 	};
 
 	class UnaryExpr : public Expr

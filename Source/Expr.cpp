@@ -10,7 +10,7 @@ namespace HasteLang
 		: Expression(std::move(expression)) { }
 	String GroupExpr::Accept(ExprVisitor& visitor) { return visitor.VisitGroupExpr(this); }
 
-	LiteralExpr::LiteralExpr(String value)
+	LiteralExpr::LiteralExpr(Object value)
 		: Value(std::move(value)) { }
 	String LiteralExpr::Accept(ExprVisitor& visitor) { return visitor.VisitLiteralExpr(this); }
 

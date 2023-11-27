@@ -47,7 +47,7 @@ namespace HasteLang
 		}
 		else
 		{
-			std::cout << "[ERROR] Line: " << token.Line << " at " << token.Value << ": " << message << std::endl;
+			std::cout << "[ERROR] Line: " << token.Line << " at " << token.Value.ToString() << ": " << message << std::endl;
 		}
 
 		throw std::exception();

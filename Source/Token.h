@@ -8,11 +8,11 @@ namespace HasteLang
 	class Token
 	{
 	public:
-		Token(TokenType type, const String& value, size_t line)
+		Token(TokenType type, const Object& value, size_t line)
 			: Type(type), Value(value), Line(line) { }
 
 		TokenType Type;
-		String Value;
+		Object Value;
 		size_t Line;
 	};
 }

@@ -18,6 +18,7 @@ namespace HasteLang
 		String VisitUnaryExpr(UnaryExpr* unaryExpr) override;
 
 	private:
+		String Parenthesize(Object& object, const Vector<ExprRef>& exprs);
 		String Parenthesize(const String& name, const Vector<ExprRef>& exprs);
 	};
 }

@@ -1,7 +1,8 @@
 #pragma once
 
+#include "Object.h"
+
 #include <vector>
-#include <string>
 #include <unordered_map>
 #include <memory>
 

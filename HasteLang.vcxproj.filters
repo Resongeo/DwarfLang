@@ -16,6 +16,7 @@
     <ClInclude Include="Source\ExprFwd.h" />
     <ClInclude Include="Source\ASTPrinter.h" />
     <ClInclude Include="Source\Parser.h" />
+    <ClInclude Include="Source\Object.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp" />
