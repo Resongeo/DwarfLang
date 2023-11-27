@@ -26,5 +26,6 @@
     <ClCompile Include="Source\Expr.cpp" />
     <ClCompile Include="Source\ASTPrinter.cpp" />
     <ClCompile Include="Source\Parser.cpp" />
+    <ClCompile Include="Source\Interpreter.cpp" />
   </ItemGroup>
 </Project>

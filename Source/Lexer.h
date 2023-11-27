@@ -27,6 +27,7 @@ namespace HasteLang
 		bool IsAlpha(char character);
 		bool IsAlphaNumeric(char character);
 		bool IsAtEnd();
+		Object CastValue(TokenType type, const String& value);
 
 	private:
 		String m_Source;

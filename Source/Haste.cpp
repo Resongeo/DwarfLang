@@ -3,6 +3,7 @@
 #include "Lexer.h"
 #include "Parser.h"
 #include "ASTPrinter.h"
+#include "Interpreter.h"
 
 #include <iostream>
 #include <fstream>
@@ -24,8 +25,9 @@ namespace HasteLang
 		auto lexer = Lexer(m_Source);
 		auto tokens = lexer.GetTokens();
 		auto parser = Parser(tokens);
+		auto result = Interpreter().Interpret(parser.Parse());
 
-		std::cout << ASTPrinter().Print(parser.Parse()).ToString() << std::endl;
+		std::cout << result << std::endl;
 	}
 
 	void Haste::PrintInfo()

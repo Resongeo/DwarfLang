@@ -18,7 +18,7 @@ namespace HasteLang
 		Object(bool b) : m_Value(b) {}
 		Object() : m_Value() {}
 
-		DataType GetType() { return (DataType)m_Value.index(); }
+		DataType GetType() const { return (DataType)m_Value.index(); }
 
 		std::string ToString() const
 		{
@@ -42,6 +42,19 @@ namespace HasteLang
 
 		template<typename T>
 		T Get()
+		{
+			if (std::holds_alternative<T>(m_Value))
+			{
+				return std::get<T>(m_Value);
+			}
+			else
+			{
+				throw std::bad_variant_access();
+			}
+		}
+
+		template<typename T>
+		T& GetRef()
 		{
 			if (std::holds_alternative<T>(m_Value))
 			{

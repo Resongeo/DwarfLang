@@ -112,6 +112,7 @@
     <ClCompile Include="Source\ASTPrinter.cpp" />
     <ClCompile Include="Source\Expr.cpp" />
     <ClCompile Include="Source\Haste.cpp" />
+    <ClCompile Include="Source\Interpreter.cpp" />
     <ClCompile Include="Source\Lexer.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Parser.cpp" />

@@ -9,7 +9,7 @@ namespace HasteLang
 
 	Object ASTPrinter::VisitBinaryExpr(BinaryExpr* binaryExpr)
 	{
-		return Parenthesize(binaryExpr->Operand.Value, {binaryExpr->Left, binaryExpr->Right});
+		return Parenthesize(binaryExpr->Operator.Value, {binaryExpr->Left, binaryExpr->Right});
 	}
 
 	Object ASTPrinter::VisitGroupExpr(GroupExpr* groupExpr)
@@ -36,7 +36,7 @@ namespace HasteLang
 		for (auto& expr : exprs)
 		{
 			result.append(" ");
-			result.append(expr->Accept(*this).Get<String>());
+			result.append(expr->Accept(*this).ToString());
 		}
 
 		result.append(")");
@@ -53,7 +53,7 @@ namespace HasteLang
 		for (auto& expr : exprs)
 		{
 			result.append(" ");
-			result.append(expr->Accept(*this).Get<String>());
+			result.append(expr->Accept(*this).ToString());
 		}
 
 		result.append(")");

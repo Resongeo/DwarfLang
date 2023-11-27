@@ -22,7 +22,7 @@ namespace HasteLang
 		Object Accept(ExprVisitor& visitor) override;
 
 		ExprRef Left;
-		Token Operand;
+		Token Operator;
 		ExprRef Right;
 	};
 

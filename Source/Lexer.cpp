@@ -158,12 +158,12 @@ namespace HasteLang
 	void Lexer::AddToken(TokenType type)
 	{
 		String value = m_Source.substr(m_Start, m_Current - m_Start);
-		m_Tokens.push_back(Token(type, value, m_Line));
+		m_Tokens.push_back(Token(type, CastValue(type, value), m_Line));
 	}
 
 	void Lexer::AddToken(TokenType type, const String& value)
 	{
-		m_Tokens.push_back(Token(type, value, m_Line));
+		m_Tokens.push_back(Token(type, CastValue(type, value), m_Line));
 	}
 
 
@@ -216,5 +216,17 @@ namespace HasteLang
 	bool Lexer::IsAtEnd()
 	{
 		return m_Current >= m_Source.size();
+	}
+
+	Object Lexer::CastValue(TokenType type, const String& value)
+	{
+		switch (type)
+		{
+			case TokenType::NUMBER: return Object((double)std::atoi(value.c_str()));
+			case TokenType::TRUE: return Object(true);
+			case TokenType::FALSE: return Object(false);
+		}
+
+		return Object(value);
 	}
 }
