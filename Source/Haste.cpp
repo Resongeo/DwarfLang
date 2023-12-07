@@ -14,10 +14,10 @@ namespace HasteLang
 {
 	Haste* Haste::s_Instance = nullptr;
 
-	Haste::Haste(const String& filepath)
+	Haste::Haste(const String& source, InputSource inputSource)
 	{
 		s_Instance = this;
-		m_Source = ReadFile(filepath);
+		m_Source = inputSource == InputSource::File ? ReadFile(source) : source;
 	}
 
 	void Haste::Run()

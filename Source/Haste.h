@@ -5,10 +5,16 @@
 
 namespace HasteLang
 {
+	enum class InputSource
+	{
+		File,
+		User
+	};
+
 	class Haste
 	{
 	public:
-		Haste(const String& filepath);
+		Haste(const String& source, InputSource inputSource);
 
 		void Run();
 		static void PrintInfo();

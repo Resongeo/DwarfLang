@@ -9,11 +9,25 @@ int main(int argc, char* argv[])
 	{
 		Haste::PrintInfo();
 	}
-	else
+	else if (argc >= 2)
 	{
-		auto filepath = String(argv[1]);
-		Haste haste(filepath);
-		haste.Run();
+		if (String(argv[1]) == "-f" || String(argv[1]) == "-F")
+		{
+			if (argc <= 2)
+			{
+				std::cout << "No input file" << std::endl;
+			}
+			else
+			{
+				Haste haste(String(argv[2]), InputSource::File);
+				haste.Run();
+			}
+		}
+		else
+		{
+			Haste haste(String(argv[1]), InputSource::User);
+			haste.Run();
+		}
 	}
 
 	return 0;
