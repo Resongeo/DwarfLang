@@ -45,7 +45,7 @@ command = [PREMAKE_EXE_PATH, "vs2022"]
 
 try:
     subprocess.run(command, cwd=project_dir, check=True)
-    Log.Info("Project generated successfully! Open The CobaltGameEngine.sln file in the root of the project!")
+    Log.Info("Project generated successfully! Open The HasteLang.sln file in the root of the project!")
 except subprocess.CalledProcessError as error:
     Log.Error(f"Failed to generate project files with premake: {error.returncode}.")
 except FileNotFoundError:
