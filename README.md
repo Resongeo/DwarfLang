@@ -35,3 +35,9 @@ Of you can provide a file using the `-f` flag
 > .\HasteLang.exe -f .\Test.ht
 > 10.000000
 ```
+
+Test.ht:
+```js
+var a = 10;
+print(a);
+```
