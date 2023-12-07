@@ -1,12 +1,16 @@
 #include "Interpreter.h"
 #include "Haste.h"
 
+#include <iostream>
+
 namespace HasteLang
 {
-	String Interpreter::Interpret(const ExprRef& expr)
+	void Interpreter::Interpret(const Vector<StmtRef>& statements)
 	{
-		Object value = Evaluate(expr);
-		return Stringify(value);
+		for (auto& statement : statements)
+		{
+			Execute(statement);
+		}
 	}
 
 	Object Interpreter::VisitBinaryExpr(BinaryExpr* binaryExpr)
@@ -110,6 +114,33 @@ namespace HasteLang
 		return Object();
 	}
 
+	Object Interpreter::VisitVariableExpr(VariableExpr* variableExpr)
+	{
+		return m_Environment.Get(variableExpr->Name);
+	}
+
+	void Interpreter::VisitExpressionStmt(ExpressionStmt* exprStmt)
+	{
+		Evaluate(exprStmt->Expression);
+	}
+
+	void Interpreter::VisitPrintStmt(PrintStmt* printStmt)
+	{
+		Object value = Evaluate(printStmt->Expression);
+		std::cout << Stringify(value) << std::endl;
+	}
+
+	void Interpreter::VisitVarStmt(VarStmt* varStmt)
+	{
+		Object value = varStmt->Initializer != nullptr ? Evaluate(varStmt->Initializer) : Object();
+		m_Environment.Define(varStmt->Name.Value.ToString(), value);
+	}
+
+	void Interpreter::Execute(StmtRef stmt)
+	{
+		stmt->Accept(this);
+	}
+
 	String Interpreter::Stringify(Object& object)
 	{
 		switch (object.GetType())
@@ -132,12 +163,12 @@ namespace HasteLang
 
 	Object Interpreter::Evaluate(Expr* expr)
 	{
-		return expr->Accept(*this);
+		return expr->Accept(this);
 	}
 
 	Object Interpreter::Evaluate(ExprRef expr)
 	{
-		return expr->Accept(*this);
+		return expr->Accept(this);
 	}
 
 	bool Interpreter::IsTruthy(Object& object)

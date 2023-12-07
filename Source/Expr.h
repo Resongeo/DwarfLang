@@ -10,7 +10,7 @@ namespace HasteLang
 	{
 	public:
 		Expr() = default;
-		virtual Object Accept(ExprVisitor& visitor) = 0;
+		virtual Object Accept(ExprVisitor* visitor) = 0;
 	};
 
 	using ExprRef = Ref<Expr>;
@@ -19,7 +19,7 @@ namespace HasteLang
 	{
 	public:
 		BinaryExpr(ExprRef left, Token op, ExprRef right);
-		Object Accept(ExprVisitor& visitor) override;
+		Object Accept(ExprVisitor* visitor) override;
 
 		ExprRef Left;
 		Token Operator;
@@ -30,7 +30,7 @@ namespace HasteLang
 	{
 	public:
 		GroupExpr(ExprRef expression);
-		Object Accept(ExprVisitor& visitor) override;
+		Object Accept(ExprVisitor* visitor) override;
 
 		ExprRef Expression;
 	};
@@ -39,7 +39,7 @@ namespace HasteLang
 	{
 	public:
 		LiteralExpr(Object value);
-		Object Accept(ExprVisitor& visitor) override;
+		Object Accept(ExprVisitor* visitor) override;
 
 		Object Value;
 	};
@@ -48,9 +48,18 @@ namespace HasteLang
 	{
 	public:
 		UnaryExpr(Token op, ExprRef right);
-		Object Accept(ExprVisitor& visitor) override;
+		Object Accept(ExprVisitor* visitor) override;
 
 		Token Operand;
 		ExprRef Right;
+	};
+
+	class VariableExpr : public Expr
+	{
+	public:
+		VariableExpr(Token name);
+		Object Accept(ExprVisitor* visitor) override;
+
+		Token Name;
 	};
 }

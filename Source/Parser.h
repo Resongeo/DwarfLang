@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Expr.h"
-#include "Token.h"
+#include "Stmt.h"
 
 namespace HasteLang
 {
@@ -10,9 +9,15 @@ namespace HasteLang
 	public:
 		Parser(const Vector<Token>& tokens);
 
-		ExprRef Parse();
+		Vector<StmtRef> Parse();
 
 	private:
+		StmtRef Declaration();
+		StmtRef Statement();
+		StmtRef PrintStatement();
+		StmtRef ExpressionStatement();
+		StmtRef VarStatement();
+
 		ExprRef Expression();
 		ExprRef Equality();
 		ExprRef Comparison();

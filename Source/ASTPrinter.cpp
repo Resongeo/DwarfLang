@@ -4,7 +4,7 @@ namespace HasteLang
 {
 	Object ASTPrinter::Print(const ExprRef& expr)
 	{
-		return expr->Accept(*this);
+		return expr->Accept(this);
 	}
 
 	Object ASTPrinter::VisitBinaryExpr(BinaryExpr* binaryExpr)
@@ -36,7 +36,7 @@ namespace HasteLang
 		for (auto& expr : exprs)
 		{
 			result.append(" ");
-			result.append(expr->Accept(*this).ToString());
+			result.append(expr->Accept(this).ToString());
 		}
 
 		result.append(")");
@@ -53,7 +53,7 @@ namespace HasteLang
 		for (auto& expr : exprs)
 		{
 			result.append(" ");
-			result.append(expr->Accept(*this).ToString());
+			result.append(expr->Accept(this).ToString());
 		}
 
 		result.append(")");

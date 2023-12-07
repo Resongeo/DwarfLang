@@ -6,9 +6,53 @@ namespace HasteLang
 {
 	Parser::Parser(const Vector<Token>& tokens) : m_Tokens(tokens) { }
 
-	ExprRef Parser::Parse()
+	Vector<StmtRef> Parser::Parse()
 	{
-		return Expression();
+		Vector<StmtRef> statements;
+
+		while (!IsAtEnd())
+		{
+			statements.push_back(Declaration());
+		}
+
+		return statements;
+	}
+
+	StmtRef Parser::Declaration()
+	{
+		if (Match({ TokenType::VAR })) return VarStatement();
+		return Statement();
+	}
+
+	StmtRef Parser::Statement()
+	{
+		if (Match({ TokenType::PRINT })) return PrintStatement();
+		return ExpressionStatement();
+	}
+
+	StmtRef Parser::PrintStatement()
+	{
+		ExprRef expr = Expression();
+		Consume(TokenType::SEMICOLON, "Expected ';' after value");
+		return CreateRef<PrintStmt>(expr);
+	}
+
+	StmtRef Parser::ExpressionStatement()
+	{
+		ExprRef expr = Expression();
+		Consume(TokenType::SEMICOLON, "Expected ';' after expression");
+		return CreateRef<ExpressionStmt>(expr);
+	}
+
+	StmtRef Parser::VarStatement()
+	{
+		Token name = Consume(TokenType::IDENTIFIER, "Expected variable name");
+		
+		ExprRef initializer = nullptr;
+		if (Match({ TokenType::EQUAL })) initializer = Expression();
+
+		Consume(TokenType::SEMICOLON, "Expected ';' after variable declaration");
+		return CreateRef<VarStmt>(name, initializer);
 	}
 
 	ExprRef Parser::Expression()
@@ -90,6 +134,8 @@ namespace HasteLang
 		if (Match({ TokenType::TRUE })) return CreateRef<LiteralExpr>("true");
 		if (Match({ TokenType::NIL })) return CreateRef<LiteralExpr>("null");
 		if (Match({ TokenType::NUMBER, TokenType::STRING })) return CreateRef<LiteralExpr>(Previous().Value);
+
+		if (Match({ TokenType::IDENTIFIER })) return CreateRef<VariableExpr>(Previous());
 
 		if (Match({ TokenType::LEFT_PAREN }))
 		{

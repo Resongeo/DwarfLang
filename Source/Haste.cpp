@@ -22,12 +22,9 @@ namespace HasteLang
 
 	void Haste::Run()
 	{
-		auto lexer = Lexer(m_Source);
-		auto tokens = lexer.GetTokens();
-		auto parser = Parser(tokens);
-		auto result = Interpreter().Interpret(parser.Parse());
-
-		std::cout << result << std::endl;
+		auto tokens = Lexer(m_Source).GetTokens();
+		auto statements = Parser(tokens).Parse();
+		Interpreter().Interpret(statements);
 	}
 
 	void Haste::PrintInfo()

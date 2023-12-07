@@ -1,23 +1,32 @@
 #pragma once
 
+#include "Environment.h"
 #include "ExprVisitor.h"
+#include "StmtVisitor.h"
 #include "Expr.h"
+#include "Stmt.h"
 
 namespace HasteLang
 {
-	class Interpreter : public ExprVisitor
+	class Interpreter : public ExprVisitor, public StmtVisitor
 	{
 	public:
 		Interpreter() = default;
 
-		String Interpret(const ExprRef& expr);
+		void Interpret(const Vector<StmtRef>& statements);
 
 		Object VisitBinaryExpr(BinaryExpr* binaryExpr) override;
 		Object VisitGroupExpr(GroupExpr* groupExpr) override;
 		Object VisitLiteralExpr(LiteralExpr* literalExpr) override;
 		Object VisitUnaryExpr(UnaryExpr* unaryExpr) override;
+		Object VisitVariableExpr(VariableExpr* variableExpr) override;
+
+		void VisitExpressionStmt(ExpressionStmt* exprStmt) override;
+		void VisitPrintStmt(PrintStmt* printStmt) override;
+		void VisitVarStmt(VarStmt* varStmt) override;
 
 	private:
+		void Execute(StmtRef stmt);
 		String Stringify(Object& object);
 
 		Object Evaluate(Expr* expr);
@@ -26,5 +35,8 @@ namespace HasteLang
 		bool IsEqual(Object& a, Object& b);
 		void CheckNumberOperand(const Token& op, Object& operand);
 		void CheckNumberOperands(const Token& op, Object& left, Object& right);
+
+	private:
+		Environment m_Environment;
 	};
 }

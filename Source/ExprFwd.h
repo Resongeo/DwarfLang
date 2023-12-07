@@ -7,4 +7,5 @@ namespace HasteLang
 	class GroupExpr;
 	class LiteralExpr;
 	class UnaryExpr;
+	class VariableExpr;
 }
