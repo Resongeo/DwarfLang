@@ -20,6 +20,7 @@ namespace HasteLang
 		Object VisitLiteralExpr(LiteralExpr* literalExpr) override;
 		Object VisitUnaryExpr(UnaryExpr* unaryExpr) override;
 		Object VisitVariableExpr(VariableExpr* variableExpr) override;
+		Object VisitAssignExpr(AssignExpr* assignExpr) override;
 
 		void VisitExpressionStmt(ExpressionStmt* exprStmt) override;
 		void VisitPrintStmt(PrintStmt* printStmt) override;

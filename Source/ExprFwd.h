@@ -8,4 +8,5 @@ namespace HasteLang
 	class LiteralExpr;
 	class UnaryExpr;
 	class VariableExpr;
+	class AssignExpr;
 }

@@ -32,6 +32,12 @@ namespace HasteLang
 		std::cout << "Welcome to the Haste Language!" << std::endl;
 	}
 
+	void Haste::Error(const String& message)
+	{
+		std::cout << "[ERROR]: " << message << std::endl;
+		s_Instance->m_Error = true;
+	}
+
 	void Haste::Error(const String& message, size_t line)
 	{
 		std::cout << "[ERROR] Line: " << line << " " << message << std::endl;

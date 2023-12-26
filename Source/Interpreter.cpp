@@ -119,6 +119,14 @@ namespace HasteLang
 		return m_Environment.Get(variableExpr->Name);
 	}
 
+	Object Interpreter::VisitAssignExpr(AssignExpr* assignExpr)
+	{
+		Object value = Evaluate(assignExpr->Value);
+		m_Environment.Assign(assignExpr->Name.Value.ToString(), value);
+
+		return value;
+	}
+
 	void Interpreter::VisitExpressionStmt(ExpressionStmt* exprStmt)
 	{
 		Evaluate(exprStmt->Expression);

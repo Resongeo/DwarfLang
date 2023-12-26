@@ -13,5 +13,6 @@ namespace HasteLang
 		virtual Object VisitLiteralExpr(LiteralExpr* literalExpr) = 0;
 		virtual Object VisitUnaryExpr(UnaryExpr* unaryExpr) = 0;
 		virtual Object VisitVariableExpr(VariableExpr* variableExpr) = 0;
+		virtual Object VisitAssignExpr(AssignExpr* assignExpr) = 0;
 	};
 }

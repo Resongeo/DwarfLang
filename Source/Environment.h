@@ -10,6 +10,7 @@ namespace HasteLang
 	public:
 		Environment() = default;
 
+		void Assign(const String& name, const Object& value);
 		void Define(const String& name, const Object& value);
 		Object Get(const String& name);
 		Object Get(const Token& token);

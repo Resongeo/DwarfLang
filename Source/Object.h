@@ -7,16 +7,16 @@ namespace HasteLang
 {
 	enum class DataType
 	{
-		String, Double, Bool, Null
+		Null, Double, Bool, String
 	};
 
 	class Object
 	{
 	public:
+		Object() : m_Value() {}
 		Object(std::string str) : m_Value(str) {}
 		Object(double d) : m_Value(d) {}
 		Object(bool b) : m_Value(b) {}
-		Object() : m_Value() {}
 
 		DataType GetType() const { return (DataType)m_Value.index(); }
 
@@ -67,6 +67,6 @@ namespace HasteLang
 		}
 
 	private:
-		std::variant<std::string, double, bool, std::monostate> m_Value;
+		std::variant<std::monostate, double, bool, std::string> m_Value;
 	};
 }

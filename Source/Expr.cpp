@@ -18,6 +18,11 @@ namespace HasteLang
 		: Operand(std::move(op)), Right(std::move(right)) { }
 	Object UnaryExpr::Accept(ExprVisitor* visitor) { return visitor->VisitUnaryExpr(this); }
 
-	VariableExpr::VariableExpr(Token name) : Name(std::move(name)) { }
+	VariableExpr::VariableExpr(Token name)
+		: Name(std::move(name)) { }
 	Object VariableExpr::Accept(ExprVisitor* visitor) { return visitor->VisitVariableExpr(this); }
+
+	AssignExpr::AssignExpr(Token name, ExprRef value)
+		: Name(std::move(name)), Value(std::move(value)) { }
+	Object AssignExpr::Accept(ExprVisitor* visitor) { return visitor->VisitAssignExpr(this); }
 }

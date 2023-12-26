@@ -57,7 +57,27 @@ namespace HasteLang
 
 	ExprRef Parser::Expression()
 	{
-		return Equality();
+		return Assignment();
+	}
+
+	ExprRef Parser::Assignment()
+	{
+		ExprRef expr = Equality();
+
+		if (Match({ TokenType::EQUAL }))
+		{
+			auto op = Previous();
+			auto value = Assignment();
+
+			if (VariableExpr* varExpr = dynamic_cast<VariableExpr*>(expr.get()))
+			{
+				return CreateRef<AssignExpr>(varExpr->Name, value);
+			}
+
+			Haste::Error(op, "Invalid assignment target");
+		}
+
+		return expr;
 	}
 
 	ExprRef Parser::Equality()

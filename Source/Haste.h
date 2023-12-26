@@ -18,6 +18,7 @@ namespace HasteLang
 
 		void Run();
 		static void PrintInfo();
+		static void Error(const String& message);
 		static void Error(const String& message, size_t line);
 		static void Error(const Token& token, const String& message);
 

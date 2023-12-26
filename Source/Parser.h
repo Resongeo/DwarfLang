@@ -19,6 +19,7 @@ namespace HasteLang
 		StmtRef VarStatement();
 
 		ExprRef Expression();
+		ExprRef Assignment();
 		ExprRef Equality();
 		ExprRef Comparison();
 		ExprRef Term();

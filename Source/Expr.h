@@ -62,4 +62,14 @@ namespace HasteLang
 
 		Token Name;
 	};
+
+	class AssignExpr : public Expr
+	{
+	public:
+		AssignExpr(Token name, ExprRef value);
+		Object Accept(ExprVisitor* visitor) override;
+
+		Token Name;
+		ExprRef Value;
+	};
 }
