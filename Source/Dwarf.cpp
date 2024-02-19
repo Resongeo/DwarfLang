@@ -1,4 +1,4 @@
-#include "Haste.h"
+#include "Dwarf.h"
 
 #include "Lexer.h"
 #include "Parser.h"
@@ -10,41 +10,41 @@
 #include <sstream>
 #include <exception>
 
-namespace HasteLang
+namespace DwarfLang
 {
-	Haste* Haste::s_Instance = nullptr;
+	Dwarf* Dwarf::s_Instance = nullptr;
 
-	Haste::Haste(const String& source, InputSource inputSource)
+	Dwarf::Dwarf(const String& source, InputSource inputSource)
 	{
 		s_Instance = this;
 		m_Source = inputSource == InputSource::File ? ReadFile(source) : source;
 	}
 
-	void Haste::Run()
+	void Dwarf::Run()
 	{
 		auto tokens = Lexer(m_Source).GetTokens();
 		auto statements = Parser(tokens).Parse();
 		Interpreter().Interpret(statements);
 	}
 
-	void Haste::PrintInfo()
+	void Dwarf::PrintInfo()
 	{
-		std::cout << "Welcome to the Haste Language!" << std::endl;
+		std::cout << "Welcome to the Dwarf Language!" << std::endl;
 	}
 
-	void Haste::Error(const String& message)
+	void Dwarf::Error(const String& message)
 	{
 		std::cout << "[ERROR]: " << message << std::endl;
 		s_Instance->m_Error = true;
 	}
 
-	void Haste::Error(const String& message, size_t line)
+	void Dwarf::Error(const String& message, size_t line)
 	{
 		std::cout << "[ERROR] Line: " << line << " " << message << std::endl;
 		s_Instance->m_Error = true;
 	}
 
-	void Haste::Error(const Token& token, const String& message)
+	void Dwarf::Error(const Token& token, const String& message)
 	{
 		if (token.Type == TokenType::FILE_END)
 		{
@@ -58,7 +58,7 @@ namespace HasteLang
 		throw std::exception();
 	}
 
-	String Haste::ReadFile(const String& filepath)
+	String Dwarf::ReadFile(const String& filepath)
 	{
 		std::ifstream file(filepath);
 		std::ostringstream ss;

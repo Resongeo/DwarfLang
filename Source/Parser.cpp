@@ -1,8 +1,8 @@
 #include "Parser.h"
 
-#include "Haste.h"
+#include "Dwarf.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	Parser::Parser(const Vector<Token>& tokens) : m_Tokens(tokens) { }
 
@@ -74,7 +74,7 @@ namespace HasteLang
 				return CreateRef<AssignExpr>(varExpr->Name, value);
 			}
 
-			Haste::Error(op, "Invalid assignment target");
+			Dwarf::Error(op, "Invalid assignment target");
 		}
 
 		return expr;
@@ -164,7 +164,7 @@ namespace HasteLang
 			return CreateRef<GroupExpr>(expr);
 		}
 
-		Haste::Error(Peek(), "Expected expression");
+		Dwarf::Error(Peek(), "Expected expression");
 	}
 
 
@@ -214,6 +214,6 @@ namespace HasteLang
 	{
 		if (Check(type)) return Advance();
 
-		Haste::Error(Peek(), message);
+		Dwarf::Error(Peek(), message);
 	}
 }

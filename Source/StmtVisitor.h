@@ -2,7 +2,7 @@
 
 #include "StmtFwd.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class StmtVisitor
 	{

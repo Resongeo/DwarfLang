@@ -3,7 +3,7 @@
 #include "ExprVisitor.h"
 #include "Expr.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class ASTPrinter : ExprVisitor
 	{

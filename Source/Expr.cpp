@@ -1,6 +1,6 @@
 #include "Expr.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	BinaryExpr::BinaryExpr(ExprRef left, Token op, ExprRef right)
 		: Left(std::move(left)), Operator(std::move(op)), Right(std::move(right)) { }

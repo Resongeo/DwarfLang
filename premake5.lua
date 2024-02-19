@@ -1,4 +1,4 @@
-workspace "HasteLang"
+workspace "DwarfLang"
     architecture "x86_64"
 
     configurations
@@ -14,7 +14,7 @@ workspace "HasteLang"
 
 outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-project "HasteLang"
+project "Application"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++20"
@@ -38,11 +38,11 @@ project "HasteLang"
     }
 
     filter "configurations:Debug"
-        defines "HL_DEBUG"
+        defines "DL_DEBUG"
         runtime "Debug"
         symbols "on"
     
     filter "configurations:Release"
-        defines "HL_RELEASE"
+        defines "DL_RELEASE"
         runtime "Release"
         optimize "on"

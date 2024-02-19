@@ -1,7 +1,7 @@
 #include "Environment.h"
-#include "Haste.h"
+#include "Dwarf.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	namespace Utils
 	{
@@ -31,11 +31,11 @@ namespace HasteLang
 				return;
 			}
 
-			Haste::Error("Cannot change variable '" + name + "' from " + Utils::DataTypeToString(current.GetType()) + " to " + Utils::DataTypeToString(value.GetType()));
+			Dwarf::Error("Cannot change variable '" + name + "' from " + Utils::DataTypeToString(current.GetType()) + " to " + Utils::DataTypeToString(value.GetType()));
 			return;
 		}
 
-		Haste::Error("Undefined variable '" + name + "'");
+		Dwarf::Error("Undefined variable '" + name + "'");
 	}
 
 	void Environment::Define(const String& name, const Object& value)

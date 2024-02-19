@@ -3,7 +3,7 @@
 #include <string>
 #include <variant>
 
-namespace HasteLang
+namespace DwarfLang
 {
 	enum class DataType
 	{

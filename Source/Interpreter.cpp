@@ -1,9 +1,9 @@
 #include "Interpreter.h"
-#include "Haste.h"
+#include "Dwarf.h"
 
 #include <iostream>
 
-namespace HasteLang
+namespace DwarfLang
 {
 	void Interpreter::Interpret(const Vector<StmtRef>& statements)
 	{
@@ -33,7 +33,7 @@ namespace HasteLang
 					return left.Get<String>() + right.Get<String>();
 				}
 
-				Haste::Error(binaryExpr->Operator, "Operands must be two numbers or two strings");
+				Dwarf::Error(binaryExpr->Operator, "Operands must be two numbers or two strings");
 
 				break;
 			}
@@ -199,13 +199,13 @@ namespace HasteLang
 	{
 		if (operand.GetType() == DataType::Double) return;
 
-		Haste::Error(op, "Operand must be a number");
+		Dwarf::Error(op, "Operand must be a number");
 	}
 
 	void Interpreter::CheckNumberOperands(const Token& op, Object& left, Object& right)
 	{
 		if (left.GetType() == DataType::Double && right.GetType() == DataType::Double) return;
 
-		Haste::Error(op, "Operands must be numbers");
+		Dwarf::Error(op, "Operands must be numbers");
 	}
 }

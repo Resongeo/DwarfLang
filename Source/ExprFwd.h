@@ -1,6 +1,6 @@
 #pragma once
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class Expr;
 	class BinaryExpr;

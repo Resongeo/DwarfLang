@@ -1,5 +1,5 @@
-#include "Haste.h"
-using namespace HasteLang;
+#include "Dwarf.h"
+using namespace DwarfLang;
 
 #include <iostream>
 
@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 {
 	if (argc <= 1)
 	{
-		Haste::PrintInfo();
+		Dwarf::PrintInfo();
 	}
 	else if (argc >= 2)
 	{
@@ -19,14 +19,14 @@ int main(int argc, char* argv[])
 			}
 			else
 			{
-				Haste haste(String(argv[2]), InputSource::File);
-				haste.Run();
+				Dwarf Dwarf(String(argv[2]), InputSource::File);
+				Dwarf.Run();
 			}
 		}
 		else
 		{
-			Haste haste(String(argv[1]), InputSource::User);
-			haste.Run();
+			Dwarf Dwarf(String(argv[1]), InputSource::User);
+			Dwarf.Run();
 		}
 	}
 

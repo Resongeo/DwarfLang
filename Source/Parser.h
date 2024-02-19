@@ -2,7 +2,7 @@
 
 #include "Stmt.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class Parser
 	{

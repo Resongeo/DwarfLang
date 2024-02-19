@@ -1,8 +1,8 @@
 #include "Lexer.h"
 
-#include "Haste.h"
+#include "Dwarf.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	Lexer::Lexer(const String& source) : m_Source(source)
 	{
@@ -24,7 +24,7 @@ namespace HasteLang
 		m_Keywords["null"] = TokenType::NIL;
 	}
 
-	Vector<Token> HasteLang::Lexer::GetTokens()
+	Vector<Token> Lexer::GetTokens()
 	{
 		while (!IsAtEnd())
 		{
@@ -95,7 +95,7 @@ namespace HasteLang
 				}
 				else
 				{
-					Haste::Error(String("Unexpected character: ") + ch, m_Line);
+					Dwarf::Error(String("Unexpected character: ") + ch, m_Line);
 				}
 
 				break;
@@ -116,7 +116,7 @@ namespace HasteLang
 
 		if (IsAtEnd())
 		{
-			Haste::Error("Unterminated string", m_Line);
+			Dwarf::Error("Unterminated string", m_Line);
 			return;
 		}
 

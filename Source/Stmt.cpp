@@ -1,6 +1,6 @@
 #include "Stmt.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	ExpressionStmt::ExpressionStmt(ExprRef expr) : Expression(std::move(expr)) { }
 	void ExpressionStmt::Accept(StmtVisitor* visitor) { visitor->VisitExpressionStmt(this); }

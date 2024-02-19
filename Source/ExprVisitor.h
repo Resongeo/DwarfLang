@@ -3,7 +3,7 @@
 #include "Types.h"
 #include "ExprFwd.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class ExprVisitor
 	{

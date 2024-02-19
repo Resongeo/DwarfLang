@@ -1,6 +1,6 @@
 #include "ASTPrinter.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	Object ASTPrinter::Print(const ExprRef& expr)
 	{

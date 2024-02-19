@@ -3,7 +3,7 @@
 #include "Expr.h"
 #include "StmtVisitor.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class Stmt
 	{

@@ -2,7 +2,7 @@
 
 #include "Token.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class Lexer
 	{

@@ -6,7 +6,7 @@
 #include "Expr.h"
 #include "Stmt.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class Interpreter : public ExprVisitor, public StmtVisitor
 	{

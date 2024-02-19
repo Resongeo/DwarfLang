@@ -3,7 +3,7 @@
 #include "Types.h"
 #include "Lexer.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	enum class InputSource
 	{
@@ -11,10 +11,10 @@ namespace HasteLang
 		User
 	};
 
-	class Haste
+	class Dwarf
 	{
 	public:
-		Haste(const String& source, InputSource inputSource);
+		Dwarf(const String& source, InputSource inputSource);
 
 		void Run();
 		static void PrintInfo();
@@ -26,7 +26,7 @@ namespace HasteLang
 		String ReadFile(const String& filepath);
 
 	private:
-		static Haste* s_Instance;
+		static Dwarf* s_Instance;
 		String m_Source;
 		bool m_Error = false;
 	};

@@ -4,7 +4,7 @@
 #include "Token.h"
 #include "ExprVisitor.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class Expr
 	{

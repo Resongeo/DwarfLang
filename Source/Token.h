@@ -3,7 +3,7 @@
 #include "TokenType.h"
 #include "Types.h"
 
-namespace HasteLang
+namespace DwarfLang
 {
 	class Token
 	{
